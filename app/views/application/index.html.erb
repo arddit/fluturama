@@ -25,14 +25,43 @@
 					<input class="form-control" type="text" name="" id="">
 					Choose Destination
 				</div>
-				<div class="col-xs-2">
-					<input class="form-control" type="text" name="" id="">
-					Departing Date
-				</div>
-				<div class="col-xs-2">
-					<input class="form-control" type="text" name="" id="">
-					Return Date
-				</div>
+
+		    <div class='col-xs-2'>
+		        <div class="form-group">
+		            <div class='input-group date' id='datetimepicker6'>
+		                <input type='text' class="form-control" />
+		                <span class="input-group-addon">
+		                    <span class="glyphicon glyphicon-calendar"></span>
+		                </span>
+		            </div>
+		            Depart Date
+		        </div>
+		    </div>
+		    <div class='col-xs-2'>
+		        <div class="form-group">
+		            <div class='input-group date' id='datetimepicker7'>
+		                <input type='text' class="form-control" />
+		                <span class="input-group-addon">
+		                    <span class="glyphicon glyphicon-calendar"></span>
+		                </span>
+		            </div>
+		            Return Date
+		        </div>
+		    </div>
+
+				<script type="text/javascript">
+				    $(function () {
+				        $('#datetimepicker6').datetimepicker();
+				        $('#datetimepicker7').datetimepicker();
+				        $("#datetimepicker6").on("dp.change", function (e) {
+				            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+				        });
+				        $("#datetimepicker7").on("dp.change", function (e) {
+				            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+				        });
+				    });
+				</script>
+
 				<div class="col-xs-2">
 					<%= link_to "Search", "#", class: "btn btn-lg btn-primary" %>
 				</div>
@@ -41,23 +70,41 @@
 
 		<div id="one" class="tab-pane fade">
 			<div class="row">
+
 				<div class="col-xs-3">
 					<input class="form-control" type="text" name="" id="">
 					Enter Origin
 				</div>
+
 				<div class="col-xs-3">
 					<input class="form-control" type="text" name="" id="">
 					Choose Destination
 				</div>
+
+				<div class='col-xs-2'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                Depart Date
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+
 				<div class="col-xs-2">
-					<input class="form-control" type="text" name="" id="">
-					Departing Date
 				</div>
-				<div class="col-xs-2">
-				</div>
+
 				<div class="col-xs-2">
 					<%= link_to "Search", "#", class: "btn btn-lg btn-primary" %>
 				</div>
+
 			</div>
 		</div>
 	</div>
@@ -127,13 +174,11 @@
 	<br>
 	<br>
 	<br>
+	
 
-	<div class="col-xs-2">
-		<a href="https://github.com/arddit/fluturama/"><img class="img img-responsive" alt="Github logo" src="/assets/github.png" /></a>
-	</div>
-	<br>
-	<br>
-	<br>
+	<h2 class="col-xs-4">
+		<a href="https://github.com/arddit/fluturama/">Code on GitHub</a>
+	</h2>
 	<br>
 </div>
 	<div class="row">
