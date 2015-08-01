@@ -6,5 +6,6 @@ get 'about'   => 'application#about'
 get 'contact' => 'application#contact'
 get 'help'    => 'application#help'
 get 'signup'  => 'users#new'
+resources :users
 
 end
