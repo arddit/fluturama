@@ -1,0 +1,13 @@
+<div class="row">
+	<%= form_for Newsletter.new do |f| %> 
+		<div class="col-xs-6">
+		<%= f.label "If you would like to receive an email when the website is complete, sign up here:" %>
+		</div>
+		<div class="col-xs-4">
+		<%= f.email_field :email, class: 'form-control' %>
+		</div>
+		<div class="col-xs-2">
+		<%= f.submit "Yes, please!", class: "btn btn-primary" %> 
+		</div>
+	<% end %>
+</div>

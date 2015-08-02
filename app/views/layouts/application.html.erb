@@ -26,6 +26,7 @@
 		</div> <% end %>
 		<div class="container">
 			<%= yield %>
+			<%= render "newsletters/new" %>
 			<%= render "layouts/footer" %>
 			<%= debug(params) if Rails.env.development? %>
 		</div>
