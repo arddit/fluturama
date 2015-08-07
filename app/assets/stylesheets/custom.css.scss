@@ -18,8 +18,12 @@
 }
 
 /* universal */
+
+html {
+}
 body {
   padding-top: 60px;
+  background: url(../assets/jumbotron.jpg) no-repeat center center;
 }
 section {
   overflow: auto;
@@ -34,8 +38,37 @@ textarea {
   margin-bottom: 10px;
 }
 .navbar  {
-	color: blue;
+  color: blue;
 }
+
+/*.jumbotron {
+    margin-bottom: 0px;
+    background-image: url(../assets/jumbotron.jpg);
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+}
+*/
+
+.jumbotron {
+  height: 560px;
+/*  color: white;
+  text-shadow: #444 0 1px 1px;
+  background:transparent;*/
+}
+
+#jumbo {
+  background: rgb(255, 255, 255); /* This is for ie8 and below */
+  background: rgba(255, 255, 255, 0.5); 
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.code-link {
+  padding-top: 50px;
+  padding-bottom: 10px;
+}
+
 
 /* typography */
 h1, h2, h3, h4, h5, h6 {
@@ -64,6 +97,10 @@ font-size: 1.1em; line-height: 1.7em;
 }
 
 /* header */
+#header{
+  background: rgb(0, 0, 0); /* This is for ie8 and below */
+  background: rgba(0, 0, 0, 0.8); 
+}
 #logo {
   float: left;
   margin-right: 10px;
@@ -84,7 +121,7 @@ font-size: 1.1em; line-height: 1.7em;
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid #eaeaea;
+  border-top: 2px solid #eaeaea;
   color: #777;
 }
 footer a {
