@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  adultCount: 
+  childCount: 1
+  infantInLapCount: 1
+  infantInSeatCount: 1
+  seniorCount: 1
+  origin: MyString
+  destination: MyString
+  date: MyString
+  maxStops: 1
+  maxConnectionDuration: 1
+  preferredCabin: MyString
+  earliestTime: MyString
+  latestTime: MyString
+  permittedCarrier: MyString
+  alliance: MyString
+  prohibitedCarrier: MyString
+  maxPrice: MyString
+  saleCountry: MyString
+  refundable: false
+  solutions: 1
+
+two:
+  adultCount: 
+  childCount: 1
+  infantInLapCount: 1
+  infantInSeatCount: 1
+  seniorCount: 1
+  origin: MyString
+  destination: MyString
+  date: MyString
+  maxStops: 1
+  maxConnectionDuration: 1
+  preferredCabin: MyString
+  earliestTime: MyString
+  latestTime: MyString
+  permittedCarrier: MyString
+  alliance: MyString
+  prohibitedCarrier: MyString
+  maxPrice: MyString
+  saleCountry: MyString
+  refundable: false
+  solutions: 1

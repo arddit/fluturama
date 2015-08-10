@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150802151325) do
+ActiveRecord::Schema.define(version: 20150810010922) do
+
+  create_table "flights", force: :cascade do |t|
+    t.integer  "adultCount"
+    t.integer  "childCount"
+    t.integer  "infantInLapCount"
+    t.integer  "infantInSeatCount"
+    t.integer  "seniorCount"
+    t.string   "origin"
+    t.string   "destination"
+    t.string   "date"
+    t.integer  "maxStops"
+    t.integer  "maxConnectionDuration"
+    t.string   "preferredCabin"
+    t.string   "earliestTime"
+    t.string   "latestTime"
+    t.string   "permittedCarrier"
+    t.string   "alliance"
+    t.string   "prohibitedCarrier"
+    t.string   "maxPrice"
+    t.string   "saleCountry"
+    t.boolean  "refundable"
+    t.integer  "solutions"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
   create_table "newsletters", force: :cascade do |t|
     t.string   "email"
@@ -25,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150802151325) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+    t.string   "remember_digest"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
