@@ -3,8 +3,9 @@
 <hr>
 
 <ul class="users">
-	<%= render @users %>
-	<hr>
+	<% @users.each do |user| %>
+		<%= render user %> 
+	<% end %>
 </ul>
 
 <%= will_paginate %>
