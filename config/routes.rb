@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 get 'sessions/new'
 
-root                 'application#index'
+root                'application#index'
 get    'results' => 'application#results'
 get    'about'   => 'application#about'
 get    'contact' => 'application#contact'
@@ -13,5 +13,6 @@ post   'login'   => 'sessions#create'
 delete 'logout'  => 'sessions#destroy'
 resources :users
 resources :newsletters
+resources :flights
 
 end

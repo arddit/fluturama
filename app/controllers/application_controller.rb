@@ -1,6 +1,10 @@
+require 'httparty'
+require 'json'
+
 class ApplicationController < ActionController::Base
  
   def index
+    @flight = Flight.new
   end
 
   def results  	
@@ -17,4 +21,5 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   include SessionsHelper
+
 end

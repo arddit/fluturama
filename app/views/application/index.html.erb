@@ -10,25 +10,29 @@
 	<br>
 	<br>
 
-
+<!-- 
 	<ul class="nav nav-tabs">
 	  <li class="active"><a data-toggle="tab" href="#return">Return</a></li>
 	  <li><a data-toggle="tab" href="#one">One Way</a></li>
-	</ul>
-
+	</ul> -->
+<%= form_for(@flight) do |f| %> 
 	<div class="tab-content">
 		<div id="return" class="tab-pane fade in active">
 			<div class="row">
 				<div class="col-xs-3">
-					<input class="form-control" type="text" name="" id="">
-					Enter Origin
+					<%= f.text_field :origin, class: 'form-control' %>
+					<%= f.label :origin %>
 				</div>
 				<div class="col-xs-3">
-					<input class="form-control" type="text" name="" id="">
-					Choose Destination
+					<%= f.text_field :destination, class: 'form-control' %>
+					<%= f.label :destination %>
+				</div>
+				<div class="col-xs-4">
+					<%= f.date_field :date, class: 'form-control' %>
+					<%= f.label :date %>
 				</div>
 
-		    <div class='col-xs-2'>
+		  <!--   <div class='col-xs-2'>
 		        <div class="form-group">
 		            <div class='input-group date' id='datetimepicker6'>
 		                <input type='text' class="form-control" />
@@ -50,7 +54,6 @@
 		            Return Date
 		        </div>
 		    </div>
-
 				<script type="text/javascript">
 				    $(function () {
 				        $('#datetimepicker6').datetimepicker();
@@ -63,14 +66,15 @@
 				        // });
 				    });
 				</script>
+ -->
 
 				<div class="col-xs-2">
-					<%= link_to "Search", "/results", class: "btn btn-lg btn-primary" %>
+				<%= f.submit "Search", class: "btn btn-primary" %> 
 				</div>
 			</div>
 		</div>
 
-		<div id="one" class="tab-pane fade">
+		<!-- <div id="one" class="tab-pane fade">
 			<div class="row">
 
 				<div class="col-xs-3">
@@ -108,127 +112,36 @@
 				</div>
 
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 	<div class="row">
 		<br>
 		<div class="col-xs-2">
-			Adult:
-			<select>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-			</select>
+			<%= f.label "Adults:" %>
+			<%= f.select :adultCount, (0..9) %>
 		</div>
 		<div class="col-xs-2">
-			Children:
-			<select>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-			</select>
+			<%= f.label "Children:" %>
+			<%= f.select :childCount, (0..9) %>
 		</div>
 		<div class="col-xs-2">
-			Infants:
-			<select>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-			</select>
+			<%= f.label "Infants:" %>
+			<%= f.select :infantInSeatCount, (0..9) %>
 		</div>
 		<div class="col-xs-3">
-			Ticket class:
-			<select>
-				<option value="economy">Economy</option>
-				<option value="premium">Premium Economy</option>
-				<option value="business">Business Class</option>
-				<option value="first">First Class</option>
-			</select>
+			<%= f.label "Preferred cabin:" %>
+			<%= f.select :preferredCabin, options_for_select([["Coach", "COACH"], ["Premium Coach", "PREMIUM_COACH"], ["Business", "BUSINESS"], ["First Class", "FIRST"]]) %>
 		</div>
-		<div class="col-xs-2">
-			<input type="checkbox" name"non_stop" value="stop"> Non-Stop Only 
+		<div class="col-xs-3">
+			<%= f.label "Number of stops:" %>
+			<%= f.select :maxStops, (0..9) %>
 		</div>
+
 	</div>
+<%end%>
 
 
-<!-- 
- 	<div id="mmd-flight-widget" class=""></div> 
-	<script type="text/javascript">(function initWidget() {
-		var options = {	
-			layout: {	
-				theme: "momondo"
-				, width: "930"	
-				, height: "180"	
-			},					
-			airports: {			
-				origin: "TIA",	
-				destination: "NYC"	
-			},					
-			settings: {			
-				openNewWindow: true,	
-				domain: "www.momondo.com",		
-				source: ""			
-			}								
-		};									
-		var settings = options.settings;	
-		var airports = options.airports;	
-		var layout = options.layout;		
-		var encoding = null;				
-		onWidgetLoad = function (f)			
-		{									
-			f("mmd-flight-widget", {		
-				searchForms: [{				
-					type: 1,				
-					searchURL: "http://[DOMAIN][PATH][QUERY]" + (!!settings.source ? "&source=" + settings.source : ""),	
-					openNewWindow: settings.openNewWindow,				
-					currency: settings.currency,						
-					segments: [											
-						{												
-							airports: [									
-								{ code: airports.origin || "" },		
-								{ code: airports.destination || "" }	
-							]											
-						},												
-						{												
-							airports: [									
-								{ code: airports.destination || "" },	
-								{ code: airports.origin || "" }		 	
-							]	
-						}		
-					]			
-				}]				
-			});					
-		};						
-		var scr = document.createElement("script");
-		scr["src"] = "http://" + settings.domain + "/widget/searchform/v1.0/?dimensions=" + (layout.width && layout.height ? (layout.width + "x" + layout.height) : "generic") + "&types=1&callback=onWidgetLoad&theme=" + layout.theme;	
-		var tag = document.getElementsByTagName("head");	
-		if (tag && tag.length)		
-		{							
-			tag = tag[0];			
-			tag.appendChild(scr);	
-		}							
-	})();
-  </script>
- -->
 	<div class="code-link">
 		<h2 class="col-xs-4">
 			<a href="https://github.com/arddit/fluturama/">Code on GitHub</a>

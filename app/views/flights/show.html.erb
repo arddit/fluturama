@@ -1,0 +1,38 @@
+
+<div class="row"> 
+	<% @json["trips"]["tripOption"].each do |key, value| %>
+		<h3>Price: <%= key["saleTotal"]%> | 
+		Total Duration: <%= Time.at(key["slice"][0]["duration"]*60).utc.strftime("%H:%M:%S")%>
+		<% segments = (key["slice"][0]["segment"]).length %> | 
+		Connections: <%=segments-1%> </h3>
+		<% i = 1 %>
+		<% while i <= segments %>
+			<p>Flight <%=i%>:
+			<%=key["slice"][0]["segment"][i-1]["flight"]["carrier"]%>
+			<%=key["slice"][0]["segment"][i-1]["flight"]["number"]%>
+			</p>
+			<p>
+			From: <%= key["slice"][0]["segment"][i-1]["leg"][0]["origin"]%>
+			Terminal: <%= key["slice"][0]["segment"][i-1]["leg"][0]["originTerminal"]%>
+			Departure time: <%= time = DateTime.parse(key["slice"][0]["segment"][i-1]["leg"][0]["departureTime"]).strftime("%H:%M %B %d %Y")%>
+			<p>
+			To: <%= key["slice"][0]["segment"][i-1]["leg"][0]["destination"]%>
+			Terminal: <%= key["slice"][0]["segment"][i-1]["leg"][0]["destinationTerminal"]%>
+			Arrival time: <%= time = DateTime.parse(key["slice"][0]["segment"][i-1]["leg"][0]["arrivalTime"]).strftime("%H:%M %B %d %Y")%>
+			</p>
+			<p>
+			Duration:<%=Time.at(key["slice"][0]["segment"][i-1]["duration"]*60).utc.strftime("%H:%M:%S")%>
+			Ticket class: <%=(key["slice"][0]["segment"][i-1]["cabin"]).titlecase%>
+				<% if i <= segments-1 %>
+						Time between flights: <%=Time.at(key["slice"][0]["segment"][i-1]["connectionDuration"]*60).utc.strftime("%H:%M:%S")%>
+				<% end %>
+				
+			</p>
+			</p>
+			<hr>
+			<% i += 1 %>
+		<% end %>
+	  <hr>
+
+	<% end %>
+</div>
