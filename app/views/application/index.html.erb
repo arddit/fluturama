@@ -119,7 +119,7 @@
 		<br>
 		<div class="col-xs-2">
 			<%= f.label "Adults:" %>
-			<%= f.select :adultCount, (0..9) %>
+			<%= f.select :adultCount, (0..9), :selected => 1 %>
 		</div>
 		<div class="col-xs-2">
 			<%= f.label "Children:" %>
@@ -135,7 +135,7 @@
 		</div>
 		<div class="col-xs-3">
 			<%= f.label "Number of stops:" %>
-			<%= f.select :maxStops, (0..9) %>
+			<%= f.select :maxStops, (0..9), :selected => 9 %>
 		</div>
 
 	</div>
