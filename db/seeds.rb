@@ -7,18 +7,25 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-User.create!(name:  "Example User",
-						 email: "example@arddit.com",
-             password:              "password",
-             password_confirmation: "password",
-             admin: true)
+# User.create!(name:  "Example User",
+# 						 email: "example@arddit.com",
+#              password:              "password",
+#              password_confirmation: "password",
+#              admin: true)
 
-99.times do |n|
-	name  = Faker::Name.name
-	email = "example-#{n+1}@arddit.com"
-	password = "password"
-	User.create!(name:  name,
-							 email: email,
-							 password:              password,
-							 password_confirmation: password)
+# 99.times do |n|
+# 	name  = Faker::Name.name
+# 	email = "example-#{n+1}@arddit.com"
+# 	password = "password"
+# 	User.create!(name:  name,
+# 							 email: email,
+# 							 password:              password,
+# 							 password_confirmation: password)
+# end
+
+Airport.delete_all
+open("./db/airports.txt") do |airports|
+	airports.read.each_line do |airport|
+		Airport.create!(:name => airport)
+	end
 end

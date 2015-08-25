@@ -8,6 +8,8 @@ class FlightsController < ApplicationController
 	end
 
 	def show
+
+
 		@flight = Flight.find(params[:id])
 		mykey = "AIzaSyCGSo6mi3I9TSk4K8FfPy0yLMJbOSlMIpE"
 
@@ -29,8 +31,8 @@ class FlightsController < ApplicationController
 		    [
 		      {
 		        :kind => "qpxexpress#sliceInput",
-		        :origin => @flight.origin,
-		        :destination => @flight.destination,
+		        :origin => @flight.origin[0..2],
+		        :destination => @flight.destination[0..2],
 		        :date => @flight.date,
 		        :maxStops => @flight.maxStops,
 		        :maxConnectionDuration => 680,

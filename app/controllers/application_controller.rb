@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
  
   def index
     @flight = Flight.new
+    @airport = Airport.all.map{|a| [a.name]}
   end
 
   def results  	
