@@ -24,7 +24,7 @@ class FlightsController < ApplicationController
 		      :adultCount => @flight.adultCount,
 		      :childCount => @flight.childCount,
 		      :infantInLapCount => 0,
-		      :infantInSeatCount => @fligth.infantInSeatCount,
+		      :infantInSeatCount => @flight.infantInSeatCount,
 		      :seniorCount => 0
 		    },
 		    :slice => 
