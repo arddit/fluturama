@@ -1,38 +1,86 @@
 
+<div class="row">
+	<h2> Search complete. </h2>
+</div>
 <div class="row"> 
-	<% @json["trips"]["tripOption"].each do |key, value| %>
-		<h3>Price: <%= key["saleTotal"]%> | 
-		Total Duration: <%= Time.at(key["slice"][0]["duration"]*60).utc.strftime("%H:%M:%S")%>
-		<% segments = (key["slice"][0]["segment"]).length %> | 
-		Connections: <%=segments-1%> </h3>
-		<% i = 1 %>
-		<% while i <= segments %>
-			<p>Flight <%=i%>:
-			<%=key["slice"][0]["segment"][i-1]["flight"]["carrier"]%>
-			<%=key["slice"][0]["segment"][i-1]["flight"]["number"]%>
-			</p>
-			<p>
-			From: <%= key["slice"][0]["segment"][i-1]["leg"][0]["origin"]%>
-			Terminal: <%= key["slice"][0]["segment"][i-1]["leg"][0]["originTerminal"]%>
-			Departure time: <%= time = DateTime.parse(key["slice"][0]["segment"][i-1]["leg"][0]["departureTime"]).strftime("%H:%M %B %d %Y")%>
-			<p>
-			To: <%= key["slice"][0]["segment"][i-1]["leg"][0]["destination"]%>
-			Terminal: <%= key["slice"][0]["segment"][i-1]["leg"][0]["destinationTerminal"]%>
-			Arrival time: <%= time = DateTime.parse(key["slice"][0]["segment"][i-1]["leg"][0]["arrivalTime"]).strftime("%H:%M %B %d %Y")%>
-			</p>
-			<p>
-			Duration:<%=Time.at(key["slice"][0]["segment"][i-1]["duration"]*60).utc.strftime("%H:%M:%S")%>
-			Ticket class: <%=(key["slice"][0]["segment"][i-1]["cabin"]).titlecase%>
-				<% if i <= segments-1 %>
-						Time between flights: <%=Time.at(key["slice"][0]["segment"][i-1]["connectionDuration"]*60).utc.strftime("%H:%M:%S")%>
-				<% end %>
-				
-			</p>
-			</p>
-			<hr>
-			<% i += 1 %>
-		<% end %>
-	  <hr>
+		<% if (@json["trips"] != nil) %>
+			<% @json["trips"]["tripOption"].sort_by{|s| s["saleTotal"]}.each do |key, value| %>
+			<div class="jumbotron" id="jumbo">
+				<div class="row">
+					<div class="col-xs-4">
+						<h2>
+							Price: <%= key["saleTotal"]%>
+						</h2>
+					</div>
+					<div class="col-xs-4">
+						<h2>
+							Total flight time: <%= Time.at(key["slice"][0]["duration"]*60).utc.strftime("%H:%M:%S")%>
+						</h2>
+					</div>
+					<div class="col-xs-4">
+						<h2>
+							<% segments = (key["slice"][0]["segment"]).length %> 
+							Connections: <%=segments-1%> 
+						</h2>
+					</div>
+				</div>
 
-	<% end %>
+				<% i = 1 %>
+				<% while i <= segments %>
+					<div class="row">
+						<div class="col-xs-2">
+							<h3>
+								Flight <%=i%>:
+								<%=key["slice"][0]["segment"][i-1]["flight"]["carrier"]%>
+								<%=key["slice"][0]["segment"][i-1]["flight"]["number"]%>
+							</h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">
+							<h3>
+								Departs: <%= key["slice"][0]["segment"][i-1]["leg"][0]["origin"]%>
+								<% if(key["slice"][0]["segment"][i-1]["leg"][0]["originTerminal"] != nil) %>
+									(Terminal: <%= key["slice"][0]["segment"][i-1]["leg"][0]["originTerminal"]%>)
+								<% end %>, 
+								AT: <%= time = DateTime.parse(key["slice"][0]["segment"][i-1]["leg"][0]["departureTime"]).strftime("%H:%M %d-%b-%Y")%>
+							</h3>
+						</div>
+						<div class="col-xs-6">
+							<h3>
+								Arrives: <%= key["slice"][0]["segment"][i-1]["leg"][0]["destination"]%>
+								<% if(key["slice"][0]["segment"][i-1]["leg"][0]["destinationTerminal"] != nil) %>
+									(Terminal: <%= key["slice"][0]["segment"][i-1]["leg"][0]["destinationTerminal"]%>)
+								<% end %>, 
+								AT: <%= time = DateTime.parse(key["slice"][0]["segment"][i-1]["leg"][0]["arrivalTime"]).strftime("%H:%M %d-%b-%Y")%>
+							</h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-4">
+							<p>
+								Duration:<%=Time.at(key["slice"][0]["segment"][i-1]["duration"]*60).utc.strftime("%H:%M:%S")%>
+							</p>
+						</div>
+							<% if i <= segments-1 %>
+								<div class="col-xs-4">
+									<p>
+										Time between flights: <%=Time.at(key["slice"][0]["segment"][i-1]["connectionDuration"]*60).utc.strftime("%H:%M:%S")%>
+									</p>
+								</div>
+							<% end %>
+						<div class="col-xs-4">
+							<p>
+								Ticket class: <%=(key["slice"][0]["segment"][i-1]["cabin"]).titlecase%>
+							</p>
+						</div>
+					</div>
+					<hr>
+					<% i += 1 %>
+				<% end %>
+			  </div>
+			<% end %>
+		<% else %>
+			<%= render "noflight" %>
+		<% end %>
 </div>

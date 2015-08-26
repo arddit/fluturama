@@ -22,9 +22,9 @@ class FlightsController < ApplicationController
 		    {
 		      :kind => "qpxexpress#passengerCounts",
 		      :adultCount => @flight.adultCount,
-		      :childCount => 0,
+		      :childCount => @flight.childCount,
 		      :infantInLapCount => 0,
-		      :infantInSeatCount => 0,
+		      :infantInSeatCount => @fligth.infantInSeatCount,
 		      :seniorCount => 0
 		    },
 		    :slice => 
@@ -35,7 +35,7 @@ class FlightsController < ApplicationController
 		        :destination => @flight.destination[0..2],
 		        :date => @flight.date,
 		        :maxStops => @flight.maxStops,
-		        :maxConnectionDuration => 680,
+		        :maxConnectionDuration => 2880,
 		        :preferredCabin => @flight.preferredCabin,
 		        :permittedDepartureTime => 
 		        {
@@ -43,15 +43,15 @@ class FlightsController < ApplicationController
 		          :earliestTime => "",
 		          :latestTime => ""
 		        },
-		        :permittedCarrier => ['TK', 'AZ', 'LH', 'OS'],
-		        :alliance => "SKYTEAM",
+		        :permittedCarrier => [],
+		        :alliance => "",
 		        :prohibitedCarrier => [ ]
 		      }
 		    ],
 		    :maxPrice => "",
 		    :saleCountry => "",
 		    :refundable => false,
-		    :solutions => 20
+		    :solutions => 15
 		  }
 		}.to_json,
 		:prettyPrint => true,
@@ -72,7 +72,7 @@ class FlightsController < ApplicationController
 		if @flight.save
 			redirect_to @flight
 		else
-    	render 'new'
+    	render '_noflight'
     end
 	end
 
