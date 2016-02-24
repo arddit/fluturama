@@ -51,7 +51,7 @@ class FlightsController < ApplicationController
 		    :maxPrice => "",
 		    :saleCountry => "",
 		    :refundable => false,
-		    :solutions => 15
+		    :solutions => 20
 		  }
 		}.to_json,
 		:prettyPrint => true,
